@@ -50,7 +50,7 @@ public class Room {
     }
 
     public int getExits(String direction) {
-        return (int) exits.getOrDefault(direction, 0);
+        return (int) exits.getOrDefault(direction, -1);
     }
 
 

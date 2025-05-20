@@ -37,8 +37,12 @@ public class GameMap {
             else{
                 description = description.concat(line + "\n");
             }
-            System.out.println(description);
+
         }
+    }
+
+    public Map getMap() {
+        return map;
     }
 
     public Map connectRooms(Scanner scanner) {
@@ -54,4 +58,5 @@ public class GameMap {
         }
         return exits;
     }
+
 }
