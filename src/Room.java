@@ -8,6 +8,13 @@ public class Room {
     private Map exits = new HashMap<String, Integer>();
     private Items items = new Items();
 
+    public Room(int id, String name, String description, Map exits) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.exits = exits;
+    }
+
     public Room(int id, String name, String description) {
         this.id = id;
         this.name = name;

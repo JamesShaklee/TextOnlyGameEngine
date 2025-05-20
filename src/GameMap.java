@@ -7,24 +7,51 @@ import java.util.Scanner;
 public class GameMap {
 
     private Map map = new HashMap<Integer, Room>();
+    private File rooms = new File("TextFiles/Rooms.txt");
+    private Map exits = new HashMap<String, Integer>();
 
     public void setGameMap() throws FileNotFoundException {
-        File rooms = new File("TextFiles/Rooms.txt");
         Scanner scanner = new Scanner(rooms);
+        int id = 0;
+        String name = "";
+        String description = "";
+        Room room;
         boolean newRoom = true;
 
         while (scanner.hasNext()) {
             if (scanner.hasNextInt() && newRoom) {
-                int id = scanner.nextInt();
+                id = scanner.nextInt();
+                scanner.nextLine(); //This is to get rid of an empty line due to a bug with nextInt and nextLine
 
                 newRoom = false;
-                //String name = scanner.next();
+                name = scanner.nextLine();
             }
-            String line = scanner.next();
-            if (line.equals("-----")) {
+            String line = scanner.nextLine();
+            if(line.equals("(end)")){
+                exits = connectRooms(scanner);
                 newRoom = true;
+                room = new Room(id, name, description, exits);
+                map.put(id, room);
+                description = "";
             }
-            System.out.println(line);
+            else{
+                description = description.concat(line + "\n");
+            }
+            System.out.println(description);
         }
+    }
+
+    public Map connectRooms(Scanner scanner) {
+        Map exits = new HashMap<String, Integer>();
+        while (scanner.hasNext()) {
+            String direction = scanner.next();
+            if(direction.equals("-----")){
+                break;
+            }
+            int id = Integer.parseInt(scanner.next());
+            exits.put(direction, id);
+
+        }
+        return exits;
     }
 }
