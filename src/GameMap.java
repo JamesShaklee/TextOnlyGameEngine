@@ -7,10 +7,10 @@ import java.util.Scanner;
 public class GameMap {
 
     private Map map = new HashMap<Integer, Room>();
-    private File rooms = new File("TextFiles/Rooms.txt");
+    //private File rooms = new File("TextFiles/Rooms.txt");
     private Map exits = new HashMap<String, Integer>();
 
-    public void setGameMap() throws FileNotFoundException {
+    public void setGameMap(File rooms) throws FileNotFoundException {
         Scanner scanner = new Scanner(rooms);
         int id = 0;
         String name = "";

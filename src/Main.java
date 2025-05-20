@@ -8,8 +8,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         System.out.println("New Game");
+        File rooms = new File("TextFiles/Rooms.txt");
         GameMap gameMap = new GameMap();
-        gameMap.setGameMap();
+        gameMap.setGameMap(rooms);
         Player player = new Player(1);
         String response = "";
 
