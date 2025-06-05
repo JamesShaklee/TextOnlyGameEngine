@@ -45,6 +45,10 @@ public class GameMap implements Serializable {
         return map;
     }
 
+    public Map getSaveData() {
+        return saveData;
+    }
+
     public Map connectRooms(Scanner scanner) {
         Map exits = new HashMap<String, Integer>();
         while (scanner.hasNext()) {
