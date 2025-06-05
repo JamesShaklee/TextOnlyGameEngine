@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Room {
+public class Room implements Serializable {
     private int id;
     private String name;
     private String description;
@@ -50,7 +51,13 @@ public class Room {
     }
 
     public int getExits(String direction) {
-        return (int) exits.getOrDefault(direction, -1);
+        try {
+            return (int) exits.getOrDefault(direction, -1);
+        }
+        catch (NullPointerException e) {
+            System.out.println("No exits for direction " + direction);
+            return -1;
+        }
     }
 
 
